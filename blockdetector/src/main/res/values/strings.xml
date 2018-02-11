@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">blockdetector</string>
+    <string name="reset_hint">输入检测阈值(单位毫秒)</string>
+    <string name="confirm">确定</string>
+</resources>

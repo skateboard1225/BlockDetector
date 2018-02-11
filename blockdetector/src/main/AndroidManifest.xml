@@ -1,0 +1,31 @@
+<manifest package="com.skateboard.blockdetector"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <application>
+
+        <activity
+            android:name=".ShowActivity"
+            android:launchMode="singleInstance"/>
+
+        <activity
+            android:name=".ResetActivity"
+            android:launchMode="singleInstance"/>
+
+        <activity
+            android:label="@string/app_name"
+            android:name=".ShowListActivity"
+            android:icon="@android:drawable/ic_lock_lock"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+        <service android:name=".ResetService"/>
+    </application>
+
+
+</manifest>
