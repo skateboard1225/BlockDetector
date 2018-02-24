@@ -14,7 +14,7 @@ import android.support.v4.app.NotificationCompat
 class ResetService : Service()
 {
 
-    val FOREGROUND_ID = 99887
+    val FOREGROUND_ID = Integer.MAX_VALUE
 
     val RESET_TITLE = "重置阈值"
 
@@ -22,9 +22,9 @@ class ResetService : Service()
 
     val REQUEST_ID = 9900
 
-    val CHANNEL_ID = "90"
+    val CHANNEL_ID = "1001"
 
-    val CHANNEL_NAME = "foreground_service"
+    val CHANNEL_NAME = "Blocker"
 
     override fun onBind(intent: Intent?): IBinder?
     {
@@ -35,7 +35,12 @@ class ResetService : Service()
     {
         super.onCreate()
 
-        startForeground(FOREGROUND_ID, createNotification())
+
+        val notification=createNotification()
+
+        startForeground(FOREGROUND_ID, notification)
+
+        println("already called startForground")
     }
 
 
@@ -53,6 +58,10 @@ class ResetService : Service()
 
         notificationBuilder.setContentTitle(RESET_TITLE)
 
+        notificationBuilder.setWhen(System.currentTimeMillis())
+
+        notificationBuilder.setAutoCancel(false)
+
         notificationBuilder.setContentText(RESET_CONTENT)
 
         val intent = Intent(this, ResetActivity::class.java)
@@ -66,7 +75,8 @@ class ResetService : Service()
 
     override fun onDestroy()
     {
-        stopForeground(true)
         super.onDestroy()
+        stopForeground(true)
+        stopSelf()
     }
 }

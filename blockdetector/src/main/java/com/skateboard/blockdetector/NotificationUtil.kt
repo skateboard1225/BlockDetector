@@ -26,7 +26,7 @@ object NotificationUtil
 
     val CHANNEL_ID = "1001"
 
-    val notifyId: Int = 0
+    var notifyId: Int = 1
 
     val REQUEST_CODE = 1001
 
@@ -101,6 +101,8 @@ object NotificationUtil
         notificationBuilder.setContentIntent(pendingIntent)
 
         notificationManager?.notify(notifyId, notificationBuilder.build())
+
+        notifyId++
 
     }
 

@@ -1,11 +1,13 @@
 package com.skateboard.blockdetector
 
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.Looper
+import android.support.v4.content.ContextCompat
 import android.text.format.DateFormat
 import java.util.*
 
@@ -22,7 +24,7 @@ object BlockDetector
 
     private lateinit var notifyHandler: Handler
 
-    private var LIMIT_TIME = 700L
+    private var LIMIT_TIME = 16L
 
 
     fun resetLimitTime(limitTime: Long)
@@ -103,7 +105,7 @@ object BlockDetector
 
         if (Build.VERSION.SDK_INT >= 26)
         {
-            context.startForegroundService(intent)
+            ContextCompat.startForegroundService(context, intent)
         }
         else
         {
@@ -112,6 +114,8 @@ object BlockDetector
 
 
     }
+
+
 
 
 }
